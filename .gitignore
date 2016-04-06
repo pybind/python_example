@@ -6,3 +6,4 @@ MANIFEST
 _build
 _generate
 build
+tmp
