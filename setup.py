@@ -2,8 +2,21 @@ from setuptools import setup, Extension
 from setuptools.command.build_ext import build_ext
 import sys
 import setuptools
+import subprocess
 
 __version__ = '0.0.1'
+
+#from https://gist.github.com/smidm/ff4a2c079fed97a92e9518bd3fa4797c
+def pkgconfig(*packages, **kw):
+	config = kw.setdefault('config', {})
+	optional_args = kw.setdefault('optional', '')
+	flag_map = {'include_dirs': ['--cflags-only-I', 2], 'extra_compile_args': ['--cflags-only-other', 0], 
+		'library_dirs': ['--libs-only-L', 2], 'libraries': ['--libs-only-l', 2], 'extra_link_args': ['--libs-only-other', 0] }
+	for package in packages:
+		for distutils_key, (pkg_option, n) in flag_map.items():
+			items = subprocess.check_output(['pkg-config', optional_args, pkg_option, package]).decode('utf8').split()
+			config.setdefault(distutils_key, []).extend([i[n:] for i in items])
+	return config
 
 
 class get_pybind_include(object):
@@ -21,15 +34,21 @@ class get_pybind_include(object):
         return pybind11.get_include(self.user)
 
 
-ext_modules = [
-    Extension(
-        'python_example',
-        ['src/main.cpp'],
-        include_dirs=[
+config = pkgconfig('libpng', config=
+    {'include_dirs' : [
             # Path to pybind11 headers
             get_pybind_include(),
             get_pybind_include(user=True)
         ],
+	 'libraries' : ['png']
+    }
+)
+
+ext_modules = [
+    Extension(
+        'python_example',
+        ['src/main.cpp'],
+        **config,
         language='c++'
     ),
 ]
