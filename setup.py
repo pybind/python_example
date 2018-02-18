@@ -76,6 +76,11 @@ class BuildExt(build_ext):
         c_opts['unix'] += ['-stdlib=libc++', '-mmacosx-version-min=10.7']
 
     def build_extensions(self):
+        # https://stackoverflow.com/a/36293331/
+        try:
+            self.compiler.compiler_so.remove('-Wstrict-prototypes')
+        except (AttributeError, ValueError):
+            pass
         ct = self.compiler.compiler_type
         opts = self.c_opts.get(ct, [])
         if ct == 'unix':
