@@ -92,6 +92,7 @@ class BuildExt(build_ext):
 setup(
     name='python_example',
     version=__version__,
+    package_dir={'': 'src'},
     author='Sylvain Corlay',
     author_email='sylvain.corlay@gmail.com',
     url='https://github.com/pybind/python_example',
