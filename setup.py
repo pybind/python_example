@@ -41,15 +41,14 @@ def has_flag(compiler, flagname):
     """Return a boolean indicating whether a flag name is supported on
     the specified compiler.
     """
-    import tempfile, os
-    with tempfile.TemporaryDirectory() as d:
-        fname = os.path.join(d, 'main.cpp')
-        with open(fname, 'w') as f:
-            f.write('int main (int argc, char **argv) { return 0; }')
-        try:
-            compiler.compile([fname], extra_postargs=[flagname])
-        except setuptools.distutils.errors.CompileError:
-            return False
+    import tempfile
+    with tempfile.NamedTemporaryFile('w', suffix='.cpp', delete=False) as f:
+        f.write('int main (int argc, char **argv) { return 0; }')
+        fname = f.name
+    try:
+        compiler.compile([fname], extra_postargs=[flagname])
+    except setuptools.distutils.errors.CompileError:
+        return False
     return True
 
 
