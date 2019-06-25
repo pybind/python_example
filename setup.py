@@ -52,17 +52,17 @@ def has_flag(compiler, flagname):
 
 
 def cpp_flag(compiler):
-    """Return the -std=c++[11/14] compiler flag.
+    """Return the -std=c++[11/14/17] compiler flag.
 
-    The c++14 is prefered over c++11 (when it is available).
+    The newer version is prefered over c++11 (when it is available).
     """
-    if has_flag(compiler, '-std=c++14'):
-        return '-std=c++14'
-    elif has_flag(compiler, '-std=c++11'):
-        return '-std=c++11'
-    else:
-        raise RuntimeError('Unsupported compiler -- at least C++11 support '
-                           'is needed!')
+    flags = ['-std=c++17', '-std=c++14', '-std=c++11']
+
+    for flag in flags:
+        if has_flag(compiler, flag): return flag
+
+    raise RuntimeError('Unsupported compiler -- at least C++11 support '
+                       'is needed!')
 
 
 class BuildExt(build_ext):
@@ -71,13 +71,20 @@ class BuildExt(build_ext):
         'msvc': ['/EHsc'],
         'unix': [],
     }
+    l_opts = {
+        'msvc': [],
+        'unix': [],
+    }
 
     if sys.platform == 'darwin':
-        c_opts['unix'] += ['-stdlib=libc++', '-mmacosx-version-min=10.7']
+        darwin_opts = ['-stdlib=libc++', '-mmacosx-version-min=10.7']
+        c_opts['unix'] += darwin_opts
+        l_opts['unix'] += darwin_opts
 
     def build_extensions(self):
         ct = self.compiler.compiler_type
         opts = self.c_opts.get(ct, [])
+        link_opts = self.l_opts.get(ct, [])
         if ct == 'unix':
             opts.append('-DVERSION_INFO="%s"' % self.distribution.get_version())
             opts.append(cpp_flag(self.compiler))
@@ -87,6 +94,7 @@ class BuildExt(build_ext):
             opts.append('/DVERSION_INFO=\\"%s\\"' % self.distribution.get_version())
         for ext in self.extensions:
             ext.extra_compile_args = opts
+            ext.extra_link_args = link_opts
         build_ext.build_extensions(self)
 
 setup(
@@ -98,8 +106,8 @@ setup(
     description='A test project using pybind11',
     long_description='',
     ext_modules=ext_modules,
-    setup_requires=['pybind11>=2.2'],
-    install_requires=['pybind11>=2.2'],
+    install_requires=['pybind11>=2.3'],
+    setup_requires=['pybind11>=2.3'],
     cmdclass={'build_ext': BuildExt},
     zip_safe=False,
 )

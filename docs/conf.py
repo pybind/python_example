@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# python_exameple documentation build configuration file, created by
+# python_example documentation build configuration file, created by
 # sphinx-quickstart on Fri Feb 26 00:29:33 2016.
 #
 # This file is execfile()d with the current directory set to its
