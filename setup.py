@@ -13,12 +13,9 @@ class get_pybind_include(object):
     until it is actually installed, so that the ``get_include()``
     method can be invoked. """
 
-    def __init__(self, user=False):
-        self.user = user
-
     def __str__(self):
         import pybind11
-        return pybind11.get_include(self.user)
+        return pybind11.get_include()
 
 
 ext_modules = [
@@ -28,7 +25,6 @@ ext_modules = [
         include_dirs=[
             # Path to pybind11 headers
             get_pybind_include(),
-            get_pybind_include(user=True)
         ],
         language='c++'
     ),
@@ -106,7 +102,6 @@ setup(
     description='A test project using pybind11',
     long_description='',
     ext_modules=ext_modules,
-    install_requires=['pybind11>=2.4'],
     setup_requires=['pybind11>=2.4'],
     cmdclass={'build_ext': BuildExt},
     zip_safe=False,
