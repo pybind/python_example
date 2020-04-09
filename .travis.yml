@@ -50,7 +50,7 @@ install:
     python -m pip install 'pybind11>=2.3'
     python -m pip install --verbose dist/*.tar.gz
   elif [ -n "$CONDA" ]; then
-    conda build conda.recipe
+    conda build conda.recipe --python $CONDA
     conda install --use-local python_example
   fi
 script:
