@@ -33,7 +33,6 @@ ext_modules = [
 ]
 
 
-# As of Python 3.6, CCompiler has a `has_flag` method.
 # cf http://bugs.python.org/issue26689
 def has_flag(compiler, flagname):
     """Return a boolean indicating whether a flag name is supported on
