@@ -40,18 +40,18 @@ def has_flag(compiler, flagname):
     """
     import tempfile
     import os
-    with tempfile.NamedTemporaryFile('w', suffix='.cpp') as f:
+    with tempfile.NamedTemporaryFile('w', suffix='.cpp', delete=False) as f:
         f.write('int main (int argc, char **argv) { return 0; }')
         fname = f.name
+    try:
+        compiler.compile([fname], extra_postargs=[flagname])
+    except setuptools.distutils.errors.CompileError:
+        return False
+    finally:
         try:
-            compiler.compile([fname], extra_postargs=[flagname])
-        except setuptools.distutils.errors.CompileError:
-            return False
-        finally:
-            try:
-                os.remove(fname)
-            except OSError:
-                pass
+            os.remove(fname)
+        except OSError:
+            pass
     return True
 
 
