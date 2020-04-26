@@ -39,12 +39,19 @@ def has_flag(compiler, flagname):
     the specified compiler.
     """
     import tempfile
+    import os
     with tempfile.NamedTemporaryFile('w', suffix='.cpp') as f:
         f.write('int main (int argc, char **argv) { return 0; }')
+        fname = f.name
         try:
-            compiler.compile([f.name], extra_postargs=[flagname])
+            compiler.compile([fname], extra_postargs=[flagname])
         except setuptools.distutils.errors.CompileError:
             return False
+        finally:
+            try:
+                os.remove(fname)
+            except OSError:
+                pass
     return True
 
 
@@ -56,7 +63,8 @@ def cpp_flag(compiler):
     flags = ['-std=c++17', '-std=c++14', '-std=c++11']
 
     for flag in flags:
-        if has_flag(compiler, flag): return flag
+        if has_flag(compiler, flag):
+            return flag
 
     raise RuntimeError('Unsupported compiler -- at least C++11 support '
                        'is needed!')
@@ -92,6 +100,7 @@ class BuildExt(build_ext):
             ext.extra_compile_args = opts
             ext.extra_link_args = link_opts
         build_ext.build_extensions(self)
+
 
 setup(
     name='python_example',
