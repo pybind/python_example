@@ -83,13 +83,12 @@ class BuildExt(build_ext):
         opts = self.c_opts.get(ct, [])
         link_opts = self.l_opts.get(ct, [])
         if ct == 'unix':
-            opts.append('-DVERSION_INFO="%s"' % self.distribution.get_version())
             opts.append(cpp_flag(self.compiler))
             if has_flag(self.compiler, '-fvisibility=hidden'):
                 opts.append('-fvisibility=hidden')
-        elif ct == 'msvc':
-            opts.append('/DVERSION_INFO=\\"%s\\"' % self.distribution.get_version())
+
         for ext in self.extensions:
+            ext.define_macros = [('VERSION_INFO', '"{}"'.format(self.distribution.get_version()))]
             ext.extra_compile_args = opts
             ext.extra_link_args = link_opts
         build_ext.build_extensions(self)
