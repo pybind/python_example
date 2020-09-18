@@ -1,7 +1,35 @@
 python_example
 ==============
 
+[![Gitter][gitter-badge]][gitter-link]
+
+|      CI              | status |
+|----------------------|--------|
+| Linux/macOS Travis   | [![Travis-CI][travis-badge]][travis-link] |
+| MSVC 2015            | [![AppVeyor][appveyor-badge]][appveyor-link] |
+| conda.recipe         | [![Conda Actions Status][actions-conda-badge]][actions-conda-link] |
+| pip builds           | [![Pip Actions Status][actions-pip-badge]][actions-pip-link] |
+| [`cibuildwheel`][]   | [![Wheels Actions Status][actions-wheels-badge]][actions-wheels-link] |
+
+[gitter-badge]:            https://badges.gitter.im/pybind/Lobby.svg
+[gitter-link]:             https://gitter.im/pybind/Lobby
+[actions-badge]:           https://github.com/pybind/python_example/workflows/Tests/badge.svg
+[actions-conda-link]:      https://github.com/pybind/python_example/actions?query=workflow%3A%22Conda
+[actions-conda-badge]:     https://github.com/pybind/python_example/workflows/Conda/badge.svg
+[actions-pip-link]:        https://github.com/pybind/python_example/actions?query=workflow%3A%22Pip
+[actions-pip-badge]:       https://github.com/pybind/python_example/workflows/Pip/badge.svg
+[actions-wheels-link]:     https://github.com/pybind/python_example/actions?query=workflow%3AWheels
+[actions-wheels-badge]:    https://github.com/pybind/python_example/workflows/Wheels/badge.svg
+[travis-link]:             https://travis-ci.org/pybind/python_example
+[travis-badge]:            https://travis-ci.org/pybind/python_example.svg?branch=master&status=passed 
+[appveyor-link]:           https://ci.appveyor.com/project/wjakob/python-example
+<!-- TODO: get a real badge link for appveyor -->
+[appveyor-badge]:          https://travis-ci.org/pybind/python_example.svg?branch=master&status=passed
+
 An example project built with [pybind11](https://github.com/pybind/pybind11).
+Warning: this is currently using a pre-release of pybind11 2.6.0, since the
+infrastructure for building pure Python examples has been heavily improved
+there.
 
 Installation
 ------------
@@ -13,10 +41,10 @@ Installation
 
 **On Windows (Requires Visual Studio 2015)**
 
- - For Python 3.5:
+ - For Python 3.5+:
      - clone this repository
      - `pip install ./python_example`
- - For earlier versions of Python, including Python 2.7:
+ - For Python 2.7:
 
    Pybind11 requires a C++11 compliant compiler (i.e. Visual Studio 2015 on
    Windows). Running a regular `pip install` command will detect the version
@@ -32,27 +60,21 @@ Installation
    Note that this requires the user building `python_example` to have registry edition
    rights on the machine, to be able to run the `vcvarsall.bat` script.
 
+CI Examples
+-----------
 
-Windows runtime requirements
+There are examples for CI in `.github/workflows`. A simple way to produces
+binary "wheels" for all platforms is illustrated in the "wheels.yml" file,
+using [`cibuildwheel`][]. You can also see a basic recipe for building and
+testing in `pip.yml`, and `conda.yml` has an example of a conda recipe build.
+
+Windows Python 2.7 runtime requirements
 ----------------------------
 
 On Windows, the Visual C++ 2015 redistributable packages are a runtime
-requirement for this project. It can be found [here](https://www.microsoft.com/en-us/download/details.aspx?id=48145).
-
-If you use the Anaconda python distribution, you may require the Visual Studio
-runtime as a platform-dependent runtime requirement for you package:
-
-```yaml
-requirements:
-  build:
-    - python
-    - setuptools
-    - pybind11
-
-  run:
-   - python
-   - vs2015_runtime  # [win]
-```
+requirement for this project if you build for Python 2.7 (newer versions of
+Python include this redistributable). It can be found
+[here](https://www.microsoft.com/en-us/download/details.aspx?id=48145).
 
 
 Building the documentation
@@ -81,3 +103,5 @@ Test call
 import python_example
 python_example.add(1, 2)
 ```
+
+[`cibuildwheel`]:          https://cibuildwheel.readthedocs.io

@@ -1,31 +1,44 @@
 package:
   name: python_example
-  version: {{ environ.get('GIT_DESCRIBE_TAG', 'dev') }}
-
-build:
-  number: {{ environ.get('GIT_DESCRIBE_NUMBER', 0) }}
-  {% if environ.get('GIT_DESCRIBE_NUMBER', '0') == '0' %}string: py{{ environ.get('PY_VER').replace('.', '') }}_0
-  {% else %}string: py{{ environ.get('PY_VER').replace('.', '') }}_{{ environ.get('GIT_BUILD_STR', 'GIT_STUB') }}{% endif %}
-  script_env:
-    - CC
-    - CXX
+  version: 0.0.1
 
 source:
-  git_url: ../
+  path: ..
+
+build:
+  number: 0
+  script: |
+    # This is a total hack because we are not using conda-forge pybind11. Remove after 2.6.0.
+    # And never do this yourself unless you know what you are doing (it
+    # explicitly is okay with pybind11, but may not be with arbitrary
+    # libraries)
+    python -m pip install -vvv "git+https://github.com/pybind/pybind11.git@master"
+    python -m pip install . -vvv --no-deps
+    python -m pip uninstall -y pybind11
 
 requirements:
   build:
+    - {{ compiler('cxx') }}
+    # This is a hack because we are not using conda-forge pybind11. Remove after 2.6.0
+    - cmake
+
+  host:
     - python
-    - setuptools
-    - pybind11
+    - pip
+    # Disabled for now - pybind11
+    # We are requiring a version newer than the latest release
 
   run:
     - python
-    - vs2015_runtime  # [win]
+
 
 test:
   imports:
     - python_example
+  source_files:
+    - tests
+  commands:
+    - python tests/test.py
 
 about:
   summary: An example project built with pybind11.
