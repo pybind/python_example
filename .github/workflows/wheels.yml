@@ -12,8 +12,8 @@ on:
 
 env:
   CIBW_TEST_COMMAND: python {project}/tests/test.py
-  # This is a hack that can be removed when we start using wheels for pybind11
-  CIBW_BEFORE_BUILD: pip install cmake git+https://github.com/pybind/pybind11.git@master
+  # This can be removed if pyproject.toml is used
+  CIBW_BEFORE_BUILD: pip install pybind11
 
 
 jobs:
@@ -52,14 +52,14 @@ jobs:
     - uses: actions/setup-python@v2
 
     - name: Install cibuildwheel
-      run: python -m pip install cibuildwheel==1.6.0
+      run: python -m pip install cibuildwheel==1.6.1
 
     - name: Build wheel
       run: python -m cibuildwheel --output-dir wheelhouse
       env:
-        # We have to skip Win 3.5 for now, because it doesn't support PEP 518
-        # build from a portable install (can re-add when using wheels for pybind11)
-        CIBW_SKIP: cp27-win* cp35-win*
+        # Python 2.7 on Windows requires a workaround for C++11 support,
+        # built separately below
+        CIBW_SKIP: cp27-win*
 
     - name: Show files
       run: ls -lh wheelhouse
@@ -88,7 +88,7 @@ jobs:
     - uses: actions/setup-python@v2
 
     - name: Install cibuildwheel
-      run: python -m pip install cibuildwheel==1.6.0
+      run: python -m pip install cibuildwheel==1.6.1
 
     - uses: ilammy/msvc-dev-cmd@v1
 

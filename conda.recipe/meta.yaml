@@ -12,7 +12,7 @@ build:
     # And never do this yourself unless you know what you are doing (it
     # explicitly is okay with pybind11, but may not be with arbitrary
     # libraries)
-    python -m pip install -vvv "git+https://github.com/pybind/pybind11.git@master"
+    python -m pip install -vvv "pybind11==2.6.0b1"
     python -m pip install . -vvv --no-deps
     python -m pip uninstall -y pybind11
 
