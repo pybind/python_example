@@ -10,6 +10,7 @@ Installation
 
  - clone this repository
  - `pip install ./python_example`
+ -  conda install ./python_example
 
 **On Windows (Requires Visual Studio 2015)**
 
