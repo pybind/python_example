@@ -8,15 +8,16 @@ Installation
 
 **On Unix (Linux, OS X)**
 
- - clone this repository
+ - clone this repository for python 2
  - `pip install ./python_example`
- -  conda install ./python_example
+ - clone this repository for python 3
+ -  pip3 install ./python_example
 
-**On Windows (Requires Visual Studio 2015)**
+**On Windows (Requires Visual Studio 2015 or higher)**
 
- - For Python 3.5:
+ - For Python 3.5 and above:
      - clone this repository
-     - `pip install ./python_example`
+     - `pip3 install ./python_example`
  - For earlier versions of Python, including Python 2.7:
 
    Pybind11 requires a C++11 compliant compiler (i.e. Visual Studio 2015 on
