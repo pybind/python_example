@@ -81,3 +81,8 @@ Test call
 import python_example
 python_example.add(1, 2)
 ```
+
+
+Feedback
+---------
+Suggestions are always welcome, thank you!
