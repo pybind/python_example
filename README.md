@@ -37,7 +37,7 @@ Windows runtime requirements
 ----------------------------
 
 On Windows, the Visual C++ 2015 redistributable packages are a runtime
-requirement for this project. It can be found [here](https://www.microsoft.com/en-us/download/details.aspx?id=48145).
+requirement for this project. It can be found [here]-->(https://www.microsoft.com/en-us/download/details.aspx?id=48145).
 
 If you use the Anaconda python distribution, you may require the Visual Studio
 runtime as a platform-dependent runtime requirement for you package:
