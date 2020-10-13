@@ -12,7 +12,8 @@ build:
     # And never do this yourself unless you know what you are doing (it
     # explicitly is okay with pybind11, but may not be with arbitrary
     # libraries)
-    python -m pip install -vvv "pybind11==2.6.0b1"
+    unset PIP_NO_INDEX
+    python -m pip install -vvv "pybind11==2.6.0rc3"
     python -m pip install . -vvv --no-deps
     python -m pip uninstall -y pybind11
 
