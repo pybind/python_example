@@ -7,27 +7,16 @@ source:
 
 build:
   number: 0
-  script: |
-    # This is a total hack because we are not using conda-forge pybind11. Remove after 2.6.0.
-    # And never do this yourself unless you know what you are doing (it
-    # explicitly is okay with pybind11, but may not be with arbitrary
-    # libraries)
-    unset PIP_NO_INDEX
-    python -m pip install -vvv "pybind11==2.6.0rc3"
-    python -m pip install . -vvv --no-deps
-    python -m pip uninstall -y pybind11
+  script: python -m pip install . -vvv
 
 requirements:
   build:
     - {{ compiler('cxx') }}
-    # This is a hack because we are not using conda-forge pybind11. Remove after 2.6.0
-    - cmake
 
   host:
     - python
     - pip
-    # Disabled for now - pybind11
-    # We are requiring a version newer than the latest release
+    - pybind11 >=2.6.0
 
   run:
     - python

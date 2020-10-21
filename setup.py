@@ -41,8 +41,8 @@ setup(
     ext_modules=ext_modules,
     # Note: You have to add pybind11 to both setup and install requires to make
     # it available during the build. Using PEP 518's pyproject.toml is better!
-    setup_requires=["pybind11==2.6.0rc3"],
-    install_requires=["pybind11==2.6.0rc3"],
+    setup_requires=["pybind11==2.6.0"],
+    install_requires=["pybind11==2.6.0"],
     extras_require={"test": "pytest"},
     # Currently, build_ext only provides an optional "highest supported C++
     # level" feature, but in the future it may provide more features.

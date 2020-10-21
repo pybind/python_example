@@ -27,9 +27,6 @@ python_example
 [appveyor-badge]:          https://travis-ci.org/pybind/python_example.svg?branch=master&status=passed
 
 An example project built with [pybind11](https://github.com/pybind/pybind11).
-Warning: this is currently using a pre-release of pybind11 2.6.0, since the
-infrastructure for building pure Python examples has been heavily improved
-there.
 
 Installation
 ------------
