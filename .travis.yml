@@ -47,7 +47,6 @@ install:
 - |
   if [ -n "$PYTHON" ]; then
     python setup.py sdist
-    python -m pip install 'pybind11>=2.3'
     python -m pip install --verbose dist/*.tar.gz
   elif [ -n "$CONDA" ]; then
     conda build conda.recipe --python $CONDA
