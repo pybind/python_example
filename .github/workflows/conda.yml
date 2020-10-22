@@ -29,6 +29,8 @@ jobs:
         uses: conda-incubator/setup-miniconda@v1.7.0
         with:
           python-version: ${{ matrix.python-version }}
+          channels: conda-forge,defaults
+          channel-priority: strict
           
       - name: Prepare
         run: conda install conda-build conda-verify
