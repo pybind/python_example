@@ -1,13 +1,8 @@
 from setuptools import setup
 
-# With setup_requires, this runs twice - once without setup_requires, and once
-# with. The build only happens the second time.
-try:
-    from pybind11.setup_helpers import Pybind11Extension, build_ext
-    from pybind11 import get_cmake_dir
-except ImportError:
-    from setuptools import Extension as Pybind11Extension
-    from setuptools.command.build_ext import build_ext
+# Available at setup time due to pyproject.toml
+from pybind11.setup_helpers import Pybind11Extension, build_ext
+from pybind11 import get_cmake_dir
 
 import sys
 
@@ -39,10 +34,6 @@ setup(
     description="A test project using pybind11",
     long_description="",
     ext_modules=ext_modules,
-    # Note: You have to add pybind11 to both setup and install requires to make
-    # it available during the build. Using PEP 518's pyproject.toml is better!
-    setup_requires=["pybind11==2.6.0"],
-    install_requires=["pybind11==2.6.0"],
     extras_require={"test": "pytest"},
     # Currently, build_ext only provides an optional "highest supported C++
     # level" feature, but in the future it may provide more features.
