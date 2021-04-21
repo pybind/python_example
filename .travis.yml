@@ -5,19 +5,15 @@ matrix:
   - os: linux
     env: PYTHON=2.7
   - os: linux
-    env: PYTHON=3.6
+    env: PYTHON=3.8
   - os: linux
     env: CONDA=3.7
-  - os: linux
-    env: CONDA=3.6
   - os: osx
     env: PYTHON=2.7
   - os: osx
-    env: PYTHON=3.6
+    env: PYTHON=3.8
   - os: osx
     env: CONDA=3.7
-  - os: osx
-    env: CONDA=3.6
 before_install:
 - |
   if [ "$TRAVIS_OS_NAME" = "linux" ]; then export CXX=g++-4.8 CC=gcc-4.8; fi
@@ -32,6 +28,7 @@ before_install:
     python -m pip install --user virtualenv
     virtualenv -p python${PYTHON:0:1} venv
     source venv/bin/activate
+    pip install -U pip
   elif [ -n "$CONDA" ]; then
     if [ "$TRAVIS_OS_NAME" = "linux" ]; then OS=Linux-x86_64; else OS=MacOSX-x86_64; fi
     wget -O miniconda.sh https://repo.continuum.io/miniconda/Miniconda${CONDA:0:1}-latest-$OS.sh
