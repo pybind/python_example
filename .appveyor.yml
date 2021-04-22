@@ -16,7 +16,7 @@ install:
 - ps: |
     if ($env:PLATFORM -eq "x64") { $env:PYTHON = "$env:PYTHON-x64" }
     $env:PATH = "C:\Python$env:PYTHON\;C:\Python$env:PYTHON\Scripts\;$env:PATH"
-    python -m pip install --disable-pip-version-check --upgrade --no-warn-script-location pip build
+    python -m pip install --disable-pip-version-check --upgrade --no-warn-script-location pip build virtualenv
 build_script:
 - ps: |
     python -m build -s
