@@ -69,7 +69,7 @@ jobs:
       with:
         submodules: true
 
-    - uses: ilammy/msvc-dev-cmd@v1
+    - uses: ilammy/msvc-dev-cmd@v1.8.0
 
     - name: Build 64-bit wheel
       uses: joerick/cibuildwheel@v1.10.0
@@ -78,7 +78,7 @@ jobs:
         DISTUTILS_USE_SDK: 1
         MSSdk: 1
 
-    - uses: ilammy/msvc-dev-cmd@v1
+    - uses: ilammy/msvc-dev-cmd@v1.8.0
       with:
         arch: x86
 
