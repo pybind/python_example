@@ -48,3 +48,24 @@ jobs:
 
     - name: Test
       run: python tests/test.py
+
+  build-mingw64:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: msys2 {0}
+    steps:
+    - uses: msys2/setup-msys2@v2
+      with:
+        update: true
+        install: >-
+          mingw-w64-x86_64-gcc
+          mingw-w64-x86_64-python-pip
+
+    - uses: actions/checkout@v2
+
+    - name: Build and install
+      run: pip install .
+
+    - name: Test
+      run: python tests/test.py
