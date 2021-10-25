@@ -21,7 +21,7 @@ python_example
 [actions-wheels-link]:     https://github.com/pybind/python_example/actions?query=workflow%3AWheels
 [actions-wheels-badge]:    https://github.com/pybind/python_example/workflows/Wheels/badge.svg
 [travis-link]:             https://travis-ci.org/pybind/python_example
-[travis-badge]:            https://travis-ci.org/pybind/python_example.svg?branch=master&status=passed 
+[travis-badge]:            https://travis-ci.org/pybind/python_example.svg?branch=master&status=passed
 [appveyor-link]:           https://ci.appveyor.com/project/wjakob/python-example
 <!-- TODO: get a real badge link for appveyor -->
 [appveyor-badge]:          https://travis-ci.org/pybind/python_example.svg?branch=master&status=passed
