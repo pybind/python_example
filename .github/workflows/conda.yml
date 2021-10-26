@@ -30,7 +30,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           channels: conda-forge
-          
+
       - name: Prepare
         run: conda install conda-build conda-verify
 
