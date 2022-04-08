@@ -45,11 +45,22 @@ jobs:
         install: >-
           mingw-w64-x86_64-gcc
           mingw-w64-x86_64-python-pip
+          mingw-w64-x86_64-python-wheel
 
     - uses: actions/checkout@v2
 
+    - name: Install pybind11
+      # This is required because --no-build-isolation disable dependences
+      # installation
+      run: pip install pybind11
+
     - name: Build and install
-      run: pip install .
+      # --no-build-isolation is required because the vanilla setuptool does not
+      # support Mingw64.See patches here:
+      # https://github.com/msys2/MINGW-packages/tree/master/mingw-w64-python-setuptools
+      # Without those patches build_ext fails with:
+      # error: --plat-name must be one of ('win32', 'win-amd64', 'win-arm32', 'win-arm64')
+      run: pip install --no-build-isolation .
 
     - name: Test
       run: python tests/test.py
