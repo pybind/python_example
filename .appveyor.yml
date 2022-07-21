@@ -1,15 +1,10 @@
 version: '{build}'
 image: Visual Studio 2017
-stack: python 3.7
+stack: python 3.8
 skip_branch_with_pr: true
 environment:
   global:
-    # DISTUTILS_USE_SDK: 1
     PYTHONWARNINGS: ignore:DEPRECATION
-    # MSSdk: 1
-    Py_DEBUG: 0
-    WITH_PYMALLOC: 0
-    
 init:
 - cmd: set PATH=C:\Python37;C:\Python37\Scripts;%PATH%
 install:
