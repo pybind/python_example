@@ -1,5 +1,5 @@
 version: '{build}'
-image: Visual Studio 2017
+image: Visual Studio 2019
 stack: python 3.10
 skip_branch_with_pr: true
 environment:
