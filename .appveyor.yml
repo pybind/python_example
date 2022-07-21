@@ -2,9 +2,6 @@ version: '{build}'
 image: Visual Studio 2019
 stack: python 3.10
 skip_branch_with_pr: true
-environment:
-  global:
-    PYTHONWARNINGS: ignore:DEPRECATION
 init:
 - cmd: set PATH=C:\Python310;C:\Python310\Scripts;%PATH%
 install:
