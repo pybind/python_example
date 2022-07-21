@@ -1,5 +1,5 @@
 version: '{build}'
-image: Visual Studio 2015
+image: Visual Studio 2017
 platform:
 - x86
 - x64
@@ -11,7 +11,7 @@ environment:
   matrix:
   - PYTHON: 36
 install:
-- cmd: '"%VS140COMNTOOLS%\..\..\VC\vcvarsall.bat" %PLATFORM%'
+- cmd: '"%VS141COMNTOOLS%\..\..\VC\vcvarsall.bat" %PLATFORM%'
 - ps: |
     if ($env:PLATFORM -eq "x64") { $env:PYTHON = "$env:PYTHON-x64" }
     $env:PATH = "C:\Python$env:PYTHON\;C:\Python$env:PYTHON\Scripts\;$env:PATH"
