@@ -1,23 +1,19 @@
 version: '{build}'
 image: Visual Studio 2017
 stack: python 3.7
-platform:
-- x86
-- x64
+skip_branch_with_pr: true
 environment:
   global:
-    DISTUTILS_USE_SDK: 1
+    # DISTUTILS_USE_SDK: 1
     PYTHONWARNINGS: ignore:DEPRECATION
-    MSSdk: 1
+    # MSSdk: 1
 init:
 - cmd: set PATH=C:\Python37;C:\Python37\Scripts;%PATH%
 install:
-    python -m pip install --disable-pip-version-check --upgrade --no-warn-script-location pip build virtualenv
+- ps: python -m pip install --disable-pip-version-check --upgrade --no-warn-script-location pip build virtualenv
 build_script:
 - ps: |
     python -m build -s
-    cd dist
-    python -m pip install --verbose python_example-0.0.1.tar.gz
-    cd ..
+    python -m pip install --verbose dist\python_example-0.0.1.tar.gz
 test_script:
 - ps: python tests\test.py
