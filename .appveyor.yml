@@ -10,7 +10,7 @@ environment:
 init:
 - cmd: set PATH=C:\Python37;C:\Python37\Scripts;%PATH%
 install:
-- ps: python -m pip install --disable-pip-version-check --upgrade --no-warn-script-location pip build virtualenv
+- ps: python -m pip install --disable-pip-version-check --upgrade --no-warn-script-location pip build virtualenv wheel
 build_script:
 - ps: |
     python -m build -s
