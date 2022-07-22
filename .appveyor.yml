@@ -8,7 +8,6 @@ install:
 - ps: python -m pip install --disable-pip-version-check --upgrade --no-warn-script-location pip build virtualenv wheel
 build_script:
 - ps: |
-    python -m build -s
-    python -m pip install --verbose dist\python_example-0.0.1.tar.gz
+    python -m pip install .
 test_script:
 - ps: python tests\test.py
