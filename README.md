@@ -27,7 +27,7 @@ python_example
 [appveyor-badge]:          https://travis-ci.org/pybind/python_example.svg?branch=master&status=passed
 
 An example project built with [pybind11](https://github.com/pybind/pybind11).
-This requires Python 3.6+; for older versions of Python, check the commit
+This requires Python 3.7+; for older versions of Python, check the commit
 history.
 
 Installation
