@@ -1,7 +1,7 @@
 import sys
 
-from pybind11 import get_cmake_dir
 # Available at setup time due to pyproject.toml
+from pybind11 import get_cmake_dir
 from pybind11.setup_helpers import Pybind11Extension, build_ext
 from setuptools import setup
 
@@ -38,5 +38,5 @@ setup(
     # level" feature, but in the future it may provide more features.
     cmdclass={"build_ext": build_ext},
     zip_safe=False,
-    python_requires=">=3.6",
+    python_requires=">=3.7",
 )
