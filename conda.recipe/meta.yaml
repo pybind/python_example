@@ -7,7 +7,7 @@ source:
 
 build:
   number: 0
-  script: python -m pip install . -vvv
+  script: {{ PYTHON }} -m pip install . -vvv
 
 requirements:
   build:
@@ -16,7 +16,7 @@ requirements:
   host:
     - python
     - pip
-    - pybind11 >=2.6.0
+    - pybind11 >=2.10.0
 
   run:
     - python
