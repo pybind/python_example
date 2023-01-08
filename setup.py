@@ -1,4 +1,5 @@
 import sys
+from glob import glob
 
 # Available at setup time due to pyproject.toml
 from pybind11 import get_cmake_dir
@@ -18,7 +19,7 @@ __version__ = "0.0.1"
 
 ext_modules = [
     Pybind11Extension("python_example",
-        ["src/main.cpp"],
+        sorted(glob("src/*.cpp")) + glob("src/*.hpp"),
         include_dirs = ["src"],
         # Example: passing in the version to the compiled code
         define_macros = [('VERSION_INFO', __version__)],
