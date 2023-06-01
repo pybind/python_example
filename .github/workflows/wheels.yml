@@ -43,9 +43,10 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - uses: pypa/cibuildwheel@v2.12.3
+    - uses: pypa/cibuildwheel@v2.13.0
       env:
         CIBW_ARCHS_MACOS: auto universal2
+        CIBW_PRERELEASE_PYTHONS: true
 
     - name: Verify clean directory
       run: git diff --exit-code
