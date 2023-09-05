@@ -22,7 +22,7 @@ jobs:
     runs-on: ${{ matrix.platform }}
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - uses: actions/setup-python@v4
       with:
@@ -51,7 +51,7 @@ jobs:
           mingw-w64-x86_64-python-pip
           mingw-w64-x86_64-python-wheel
 
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: Install pybind11
       # This is required because --no-build-isolation disable dependences
