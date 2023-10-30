@@ -40,7 +40,6 @@ repos:
   - id: ruff
     args: ["--fix", "--show-fixes"]
   - id: ruff-format
-    files: ^(docs)
 
 # Changes tabs to spaces
 - repo: https://github.com/Lucas-C/pre-commit-hooks
