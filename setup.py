@@ -9,7 +9,7 @@ __version__ = "0.0.1"
 ext_modules = [
     Pybind11Extension(
         "scom",
-        ["code/bindings.cpp"],
+        ["code/bindings.cpp", "code/serial_communicator.cpp"],
         # Example: passing in the version to the compiled code
         define_macros=[("VERSION_INFO", __version__)],
     ),

@@ -1,9 +1,13 @@
+import logging
+
+# pylint: disable=no-name-in-module
 from scom import SerialCommunicatorWrapper
 
 
 def main():
     wrapper = SerialCommunicatorWrapper()
-    wrapper.here(10)
+    success = wrapper.open("/dev/ttyUSB0", 115200)
+    logging.error(f"Success: {success}")
 
 
 if __name__ == "__main__":
