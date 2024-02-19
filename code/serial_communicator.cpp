@@ -4,15 +4,48 @@
 #include <unistd.h>
 
 #include <cstring>
+#include <iomanip>
 #include <iostream>
+#include <sstream>
 
 namespace scom {
+
+void space_delimited_string_to_hex(const std::string& input_str,
+                                   std::vector<char>& bytes) {
+  bytes.clear();
+  std::istringstream input_stream(input_str);
+  std::string byte_string;
+  while (std::getline(input_stream, byte_string, ' ')) {
+    std::stringstream ss;
+    ss << std::hex << byte_string;
+
+    // This is needed because if byte was unsinged char, then >>
+    // treats it as an alphabet text instead of number
+    unsigned int byte;
+    ss >> byte;
+    bytes.emplace_back(static_cast<unsigned char>(byte));
+  }
+}
+
+std::string hex_to_space_delimited_string(const std::vector<char>& bytes) {
+  std::ostringstream output_stream;
+  for (auto iter = bytes.begin(); iter != bytes.end(); ++iter) {
+    output_stream << std::uppercase << std::setw(2) << std::setfill('0')
+                  << std::hex << static_cast<int>(*iter);
+
+    if (std::next(iter) != bytes.end()) {
+      output_stream << " ";
+    }
+  }
+  return output_stream.str();
+}
 
 SerialCommunicator::~SerialCommunicator() {
   if (fd_ >= 0) {
     close(fd_);
   }
 }
+
 bool SerialCommunicator::initialize(const std::string_view port,
                                     const size_t baud_rate) {
   fd_ = open(port.data(), O_RDWR | O_NOCTTY | O_SYNC);
