@@ -17,6 +17,19 @@ def test_write(wrapper: SerialCommunicatorWrapper) -> bool:
     return wrapper.write(input_str)
 
 
+def test_write_read(wrapper: SerialCommunicatorWrapper) -> bool:
+    input_str = "FA FF 30 00 D1"
+    expected_response = "FA FF 31 00 D0"
+    if not wrapper.write(input_str):
+        return False
+
+    read_str = wrapper.read(5)
+    logging.error(
+        f"Testing write_read: expected str {expected_response}, read_str: {read_str}"
+    )
+    return expected_response == read_str
+
+
 def main():
     wrapper = SerialCommunicatorWrapper()
     success = wrapper.open("/dev/ttyUSB0", 115200)
@@ -24,6 +37,7 @@ def main():
 
     assert test_reconstruction(wrapper)
     assert test_write(wrapper)
+    assert test_write_read(wrapper)
 
 
 if __name__ == "__main__":

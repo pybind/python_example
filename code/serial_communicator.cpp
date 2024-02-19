@@ -48,7 +48,7 @@ SerialCommunicator::~SerialCommunicator() {
 
 bool SerialCommunicator::write_to_port(const std::string& input_str) {
   if (!valid()) {
-    std::cerr << "Failed to write to port because port is invalid."
+    std::cerr << "Failed to write to port because file descriptor is " << fd_
               << std::endl;
     return false;
   }
@@ -56,6 +56,19 @@ bool SerialCommunicator::write_to_port(const std::string& input_str) {
   space_delimited_string_to_hex(input_str, bytes);
   const auto num_bytes_written = write(fd_, bytes.data(), bytes.size());
   return num_bytes_written == bytes.size();
+}
+
+bool SerialCommunicator::read_exact_length(std::vector<char>& bytes,
+                                           int expected_size) {
+  if (!valid()) {
+    std::cerr << "Failed to read from port because file descriptor is " << fd_
+              << std::endl;
+    return false;
+  }
+  bytes.clear();
+  bytes.resize(expected_size);
+  const auto bytes_read = read(fd_, bytes.data(), expected_size);
+  return bytes_read == expected_size;
 }
 
 bool SerialCommunicator::initialize(const std::string_view port,

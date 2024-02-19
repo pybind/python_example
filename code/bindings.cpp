@@ -32,6 +32,14 @@ class SerialCommunicatorWrapper {
 
   bool write(const std::string& str) { return communicator.write_to_port(str); }
 
+  std::string read(const size_t expected_size) {
+    std::vector<char> bytes;
+    if (!communicator.read_exact_length(bytes, expected_size)) {
+      return "";
+    }
+    return bytes_to_string(bytes);
+  }
+
  private:
   scom::SerialCommunicator communicator{};
 };
@@ -44,5 +52,6 @@ PYBIND11_MODULE(scom, m) {
       .def("string_to_bytes", &SerialCommunicatorWrapper::string_to_bytes)
       .def("bytes_to_string", &SerialCommunicatorWrapper::bytes_to_string)
       .def("write", &SerialCommunicatorWrapper::write)
+      .def("read", &SerialCommunicatorWrapper::read)
       .def("open", &SerialCommunicatorWrapper::open);
 }

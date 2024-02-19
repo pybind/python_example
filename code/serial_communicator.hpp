@@ -26,7 +26,20 @@ class SerialCommunicator {
   SerialCommunicator() : fd_{-1} {}
   ~SerialCommunicator();
 
+  /**
+   * @brief:  Write to port
+   * @param[in]   input_str:  Input string
+   * @return: True, if write succeeded
+   */
   bool write_to_port(const std::string& input_str);
+
+  /**
+   * @brief:  Read from port an exact number of bytes
+   * @param[in]   bytes:  Read bytes
+   * @param[in]   expected_size:  Number of bytes to read
+   * @return: True, if an exact number of bytes were read
+   */
+  bool read_exact_length(std::vector<char>& bytes, int expected_size);
 
   /**
    * @brief: Check if communicator is valid
