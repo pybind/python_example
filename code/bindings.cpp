@@ -30,6 +30,8 @@ class SerialCommunicatorWrapper {
     return scom::hex_to_space_delimited_string(bytes);
   }
 
+  bool write(const std::string& str) { return communicator.write_to_port(str); }
+
  private:
   scom::SerialCommunicator communicator{};
 };
@@ -41,5 +43,6 @@ PYBIND11_MODULE(scom, m) {
       .def(py::init<>())
       .def("string_to_bytes", &SerialCommunicatorWrapper::string_to_bytes)
       .def("bytes_to_string", &SerialCommunicatorWrapper::bytes_to_string)
+      .def("write", &SerialCommunicatorWrapper::write)
       .def("open", &SerialCommunicatorWrapper::open);
 }

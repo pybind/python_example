@@ -12,13 +12,18 @@ def test_reconstruction(wrapper: SerialCommunicatorWrapper) -> bool:
     return input_str == reconstructed_str
 
 
+def test_write(wrapper: SerialCommunicatorWrapper) -> bool:
+    input_str = "FA FF 30 00 D1"
+    return wrapper.write(input_str)
+
+
 def main():
     wrapper = SerialCommunicatorWrapper()
     success = wrapper.open("/dev/ttyUSB0", 115200)
     logging.error(f"Success: {success}")
 
-    success = test_reconstruction(wrapper)
-    assert success
+    assert test_reconstruction(wrapper)
+    assert test_write(wrapper)
 
 
 if __name__ == "__main__":

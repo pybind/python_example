@@ -46,6 +46,18 @@ SerialCommunicator::~SerialCommunicator() {
   }
 }
 
+bool SerialCommunicator::write_to_port(const std::string& input_str) {
+  if (!valid()) {
+    std::cerr << "Failed to write to port because port is invalid."
+              << std::endl;
+    return false;
+  }
+  std::vector<char> bytes;
+  space_delimited_string_to_hex(input_str, bytes);
+  const auto num_bytes_written = write(fd_, bytes.data(), bytes.size());
+  return num_bytes_written == bytes.size();
+}
+
 bool SerialCommunicator::initialize(const std::string_view port,
                                     const size_t baud_rate) {
   fd_ = open(port.data(), O_RDWR | O_NOCTTY | O_SYNC);

@@ -26,6 +26,8 @@ class SerialCommunicator {
   SerialCommunicator() : fd_{-1} {}
   ~SerialCommunicator();
 
+  bool write_to_port(const std::string& input_str);
+
   /**
    * @brief: Check if communicator is valid
    * @return: True, if valid
