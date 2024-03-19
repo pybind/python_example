@@ -35,7 +35,7 @@ repos:
 
 # Lints code
 - repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: "v0.1.6"
+  rev: "v0.3.3"
   hooks:
   - id: ruff
     args: ["--fix", "--show-fixes"]
@@ -43,7 +43,7 @@ repos:
 
 # Changes tabs to spaces
 - repo: https://github.com/Lucas-C/pre-commit-hooks
-  rev: v1.5.4
+  rev: v1.5.5
   hooks:
   - id: remove-tabs
 
