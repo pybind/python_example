@@ -19,7 +19,7 @@ ci:
 repos:
 # Standard hooks
 - repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: v4.5.0
+  rev: v4.6.0
   hooks:
   - id: check-added-large-files
   - id: check-case-conflict
@@ -35,7 +35,7 @@ repos:
 
 # Lints code
 - repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: "v0.3.3"
+  rev: "v0.4.2"
   hooks:
   - id: ruff
     args: ["--fix", "--show-fixes"]
