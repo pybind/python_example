@@ -39,14 +39,14 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-13]
+        os: [ubuntu-latest, windows-latest, macos-13, macos-14]
 
     steps:
     - uses: actions/checkout@v4
 
     - uses: pypa/cibuildwheel@v2.18
       env:
-        CIBW_ARCHS_MACOS: auto universal2
+        CIBW_PRERELEASE_PYTHONS: true
 
     - name: Verify clean directory
       run: git diff --exit-code
