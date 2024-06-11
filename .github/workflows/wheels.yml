@@ -44,7 +44,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - uses: pypa/cibuildwheel@v2.18
+    - uses: pypa/cibuildwheel@v2.19
       env:
         CIBW_PRERELEASE_PYTHONS: true
 
