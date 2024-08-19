@@ -39,7 +39,7 @@ jobs:
         run: conda install conda-build conda-verify
 
       - name: Build
-        run: conda build conda.recipe
+        run: conda build -c conda-forge conda.recipe
 
       - name: Install
         run: conda install -c ${CONDA_PREFIX}/conda-bld/ python_example
