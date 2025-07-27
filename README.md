@@ -5,26 +5,16 @@ python_example
 
 |      CI              | status |
 |----------------------|--------|
-| Linux/macOS Travis   | [![Travis-CI][travis-badge]][travis-link] |
-| MSVC 2019            | [![AppVeyor][appveyor-badge]][appveyor-link] |
-| conda.recipe         | [![Conda Actions Status][actions-conda-badge]][actions-conda-link] |
 | pip builds           | [![Pip Actions Status][actions-pip-badge]][actions-pip-link] |
 | [`cibuildwheel`][]   | [![Wheels Actions Status][actions-wheels-badge]][actions-wheels-link] |
 
 [gitter-badge]:            https://badges.gitter.im/pybind/Lobby.svg
 [gitter-link]:             https://gitter.im/pybind/Lobby
 [actions-badge]:           https://github.com/pybind/python_example/workflows/Tests/badge.svg
-[actions-conda-link]:      https://github.com/pybind/python_example/actions?query=workflow%3A%22Conda
-[actions-conda-badge]:     https://github.com/pybind/python_example/workflows/Conda/badge.svg
 [actions-pip-link]:        https://github.com/pybind/python_example/actions?query=workflow%3A%22Pip
 [actions-pip-badge]:       https://github.com/pybind/python_example/workflows/Pip/badge.svg
 [actions-wheels-link]:     https://github.com/pybind/python_example/actions?query=workflow%3AWheels
 [actions-wheels-badge]:    https://github.com/pybind/python_example/workflows/Wheels/badge.svg
-[travis-link]:             https://travis-ci.org/pybind/python_example
-[travis-badge]:            https://travis-ci.org/pybind/python_example.svg?branch=master&status=passed
-[appveyor-link]:           https://ci.appveyor.com/project/wjakob/python-example
-<!-- TODO: get a real badge link for appveyor -->
-[appveyor-badge]:          https://travis-ci.org/pybind/python_example.svg?branch=master&status=passed
 
 An example project built with [pybind11](https://github.com/pybind/pybind11).
 This requires Python 3.7+; for older versions of Python, check the commit
