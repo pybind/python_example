@@ -12,7 +12,7 @@ test-skip = "*universal2:arm64"
 
 
 [tool.ruff]
-target-version = "py37"
+target-version = "py39"
 
 [tool.ruff.lint]
 extend-select = [
