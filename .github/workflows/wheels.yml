@@ -44,7 +44,7 @@ jobs:
     steps:
     - uses: actions/checkout@v6
 
-    - uses: pypa/cibuildwheel@v3.3
+    - uses: pypa/cibuildwheel@v3.4
       env:
         CIBW_ARCHS_MACOS: auto universal2
 
