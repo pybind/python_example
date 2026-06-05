@@ -17,7 +17,7 @@ python_example
 [actions-wheels-badge]:    https://github.com/pybind/python_example/workflows/Wheels/badge.svg
 
 An example project built with [pybind11](https://github.com/pybind/pybind11).
-This requires Python 3.7+; for older versions of Python, check the commit
+This requires Python 3.9+; for older versions of Python, check the commit
 history.
 
 Installation

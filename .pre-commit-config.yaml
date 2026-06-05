@@ -37,8 +37,8 @@ repos:
 - repo: https://github.com/astral-sh/ruff-pre-commit
   rev: "v0.15.15"
   hooks:
-  - id: ruff
-    args: ["--fix", "--show-fixes"]
+  - id: ruff-check
+    args: ["--fix"]
   - id: ruff-format
 
 # Changes tabs to spaces
