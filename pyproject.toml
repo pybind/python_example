@@ -9,9 +9,11 @@ build-backend = "setuptools.build_meta"
 [tool.cibuildwheel]
 test-command = "python {project}/tests/test.py"
 enable = ["pypy", "graalpy"]
+build-frontend = "build[uv]"
 
 
 [tool.ruff]
+show-fixes = true
 target-version = "py39"
 
 [tool.ruff.lint]
