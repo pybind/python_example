@@ -11,6 +11,10 @@ test-command = "python {project}/tests/test.py"
 enable = ["pypy", "graalpy"]
 build-frontend = "build[uv]"
 
+[[tool.cibuildwheel.overrides]]
+select = ["gp311_242-win_amd64"]
+repair-wheel-command = ""
+
 
 [tool.ruff]
 show-fixes = true
