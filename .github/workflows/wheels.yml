@@ -19,7 +19,7 @@ jobs:
     name: Build SDist
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v7
 
     - name: Build SDist
       run: pipx run build --sdist
@@ -42,11 +42,11 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-latest, macos-26-intel, ubuntu-24.04-arm, windows-11-arm]
 
     steps:
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v7
 
-    - uses: astral-sh/setup-uv@v8.1.0
+    - uses: astral-sh/setup-uv@v8.3.2
 
-    - uses: pypa/cibuildwheel@v3.4
+    - uses: pypa/cibuildwheel@v4.1
 
     - name: Verify clean directory
       run: git diff --exit-code
@@ -66,7 +66,7 @@ jobs:
     if: github.event_name == 'release' && github.event.action == 'published'
 
     steps:
-    - uses: actions/setup-python@v6
+    - uses: actions/setup-python@v7
       with:
         python-version: "3.x"
 
