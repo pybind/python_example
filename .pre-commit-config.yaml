@@ -35,7 +35,7 @@ repos:
 
 # Lints code
 - repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: "v0.16.5"
+  rev: "v0.16.8"
   hooks:
   - id: ruff-check
     args: ["--fix"]
