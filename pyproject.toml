@@ -14,7 +14,7 @@ build-frontend = "build[uv]"
 
 [tool.ruff]
 show-fixes = true
-target-version = "py39"
+target-version = "py311"
 
 [tool.ruff.lint]
 extend-select = [
