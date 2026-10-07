@@ -1,9 +1,22 @@
 [build-system]
 requires = [
-    "setuptools>=42",
+    "setuptools>=61",
     "pybind11>=2.10.0",
 ]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "python_example"
+version = "0.0.1"
+description = "A test project using pybind11"
+authors = [{ name = "Sylvain Corlay", email = "sylvain.corlay@gmail.com" }]
+requires-python = ">=3.11"
+
+[project.urls]
+Homepage = "https://github.com/pybind/python_example"
+
+[project.optional-dependencies]
+test = ["pytest"]
 
 
 [tool.cibuildwheel]
