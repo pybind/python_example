@@ -44,9 +44,9 @@ jobs:
     steps:
     - uses: actions/checkout@v7
 
-    - uses: astral-sh/setup-uv@v10.3.0
+    - uses: astral-sh/setup-uv@v10.3.2
 
-    - uses: pypa/cibuildwheel@v4.2
+    - uses: pypa/cibuildwheel@v4.3
 
     - name: Verify clean directory
       run: git diff --exit-code
